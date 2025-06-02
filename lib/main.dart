@@ -26,7 +26,8 @@ class SimpleTabBar extends StatefulWidget {
   State<SimpleTabBar> createState() => _SimpleTabBarState();
 }
 
-class _SimpleTabBarState extends State<SimpleTabBar> with TickerProviderStateMixin {
+class _SimpleTabBarState extends State<SimpleTabBar>
+    with TickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -46,7 +47,7 @@ class _SimpleTabBarState extends State<SimpleTabBar> with TickerProviderStateMix
     return Scaffold(
       appBar: AppBar(
         title: Text('Flutter Simple Tab Bar'),
-        bottom:  TabBar(
+        bottom: TabBar(
           controller: _tabController,
           tabs: [
             Tab(text: 'Tab 1'),
@@ -55,21 +56,23 @@ class _SimpleTabBarState extends State<SimpleTabBar> with TickerProviderStateMix
         ),
       ),
       body: TabBarView(
-        children: [Center(
+          controller: _tabController,
+          children: [
+        Center(
           child: Text(
             'Welcome to Screen 1!',
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 24),
           ),
         ),
-          Center(
-            child: Text(
-              'Welcome to Screen 2!',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 24),
-            ),
-          ),]
-      ),
+        Center(
+          child: Text(
+            'Welcome to Screen 2!',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 24),
+          ),
+        ),
+      ]),
     );
   }
 }
