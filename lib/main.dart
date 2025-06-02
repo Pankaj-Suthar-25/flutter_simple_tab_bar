@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const SimpleTabBar(),
+      home: const ModernTabBar(),
     );
   }
 }
@@ -55,9 +55,7 @@ class _SimpleTabBarState extends State<SimpleTabBar>
           ],
         ),
       ),
-      body: TabBarView(
-          controller: _tabController,
-          children: const [
+      body: TabBarView(controller: _tabController, children: const [
         Center(
           child: Text(
             'Welcome to Screen 1!',
@@ -73,6 +71,74 @@ class _SimpleTabBarState extends State<SimpleTabBar>
           ),
         ),
       ]),
+    );
+  }
+}
+
+class ModernTabBar extends StatefulWidget {
+  const ModernTabBar({super.key});
+
+  @override
+  State<ModernTabBar> createState() => _ModernTabBarState();
+}
+
+class _ModernTabBarState extends State<ModernTabBar>
+    with TickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Flutter Modern Tab Bar'),
+        bottom: TabBar(
+          controller: _tabController,
+          tabs: const [
+            Tab(icon: Icon(Icons.home), text: 'Home'),
+            Tab(icon: Icon(Icons.settings), text: 'Settings'),
+          ],
+        ),
+      ),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Colors.blue.shade200, Colors.blue.shade600],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
+        child: TabBarView(
+          controller: _tabController,
+          children: const [
+            Center(
+              child: Text(
+                'Welcome to Home!',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 24, color: Colors.white),
+              ),
+            ),
+            Center(
+              child: Text(
+                'Welcome to Settings!',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 24, color: Colors.white),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
