@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: SimpleTabBar(),
+      home: const SimpleTabBar(),
     );
   }
 }
@@ -46,10 +46,10 @@ class _SimpleTabBarState extends State<SimpleTabBar>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flutter Simple Tab Bar'),
+        title: const Text('Flutter Simple Tab Bar'),
         bottom: TabBar(
           controller: _tabController,
-          tabs: [
+          tabs: const [
             Tab(text: 'Tab 1'),
             Tab(text: 'Tab 2'),
           ],
@@ -57,7 +57,7 @@ class _SimpleTabBarState extends State<SimpleTabBar>
       ),
       body: TabBarView(
           controller: _tabController,
-          children: [
+          children: const [
         Center(
           child: Text(
             'Welcome to Screen 1!',
